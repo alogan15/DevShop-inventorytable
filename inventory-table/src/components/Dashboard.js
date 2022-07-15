@@ -17,7 +17,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { mainListItems, secondaryListItems } from './listitems';
 import Orders from './Orders';
 import { InputBase } from '@mui/material';
-
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 
 const drawerWidth = 240;
@@ -73,6 +74,12 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+const style = {
+  width: '50%',
+  maxWidth: 50,
+  bgcolor: 'background.paper',
+};
+
 const mdTheme = createTheme();
 
 function DashboardContent() {
@@ -80,6 +87,8 @@ function DashboardContent() {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
+
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -131,7 +140,9 @@ function DashboardContent() {
             </IconButton>
           </Toolbar>
           <Divider />
-          <List component="nav">
+          <List component="nav"
+            
+          >
             {mainListItems}
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
@@ -160,7 +171,11 @@ function DashboardContent() {
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                  
                   <Orders />
+                  <Stack padding={3} marginLeft={-5}>
+                    <Pagination count={5} />
+                  </Stack>
                 </Paper>
               </Grid>
             </Grid>
@@ -170,7 +185,6 @@ function DashboardContent() {
     </ThemeProvider>
   );
 }
-
 export default function Dashboard() {
   return <DashboardContent />;
 }
